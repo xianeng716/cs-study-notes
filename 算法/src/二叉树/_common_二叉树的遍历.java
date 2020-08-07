@@ -4,6 +4,13 @@ import 公共类.TreeNode;
 
 import java.util.*;
 
+/**
+ * 对应题目
+ * 144.二叉树的前序遍历：https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
+ * 94.二叉树的中序遍历：https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
+ * 145.二叉树的后续遍历：https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
+ * 102.二叉树的程序遍历：https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
+ */
 public class _common_二叉树的遍历 {
     List<Integer> results = new ArrayList<>();
 
