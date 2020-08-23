@@ -39,15 +39,59 @@ public class _common_二叉树的遍历 {
 //        }
 //        System.out.println();
 
-        List<List<Integer>> lists = new _common_二叉树的遍历().levelOrder(a);
 
-        for (int i = 0; i < lists.size(); i++) {
-            List<Integer> level = lists.get(i);
-            for (int j = 0; j < level.size(); j++) {
-                System.out.print(lists.get(i).get(j) + " ");
+//        List<List<Integer>> lists = new _common_二叉树的遍历().levelOrder(a);
+
+//        for (int i = 0; i < lists.size(); i++) {
+//            List<Integer> level = lists.get(i);
+//            for (int j = 0; j < level.size(); j++) {
+//                System.out.print(lists.get(i).get(j) + " ");
+//            }
+//            System.out.println();
+//        }
+//
+//        System.out.println(new _common_二叉树的遍历().getHeight(a));
+
+
+        new _common_二叉树的遍历().morrisInorder(a);
+
+    }
+
+
+    public void morrisInorder(TreeNode root) {
+        while (root != null) {
+            if (root.left != null) {
+                // 找到前驱节点(predecessor)、后继节点(successor)
+                TreeNode pred = root.left;
+                while (pred.right != null && pred.right != root) {
+                    pred = pred.right;
+                }
+
+                if (pred.right == null) {
+                    pred.right = root;
+                    root = root.left;
+                } else { // pred.right == root
+                    System.out.print(root.val + " ");
+                    pred.right = null;
+                    root = root.right;
+                }
+            } else {
+                System.out.print(root.val + " ");
+                root = root.right;
             }
-            System.out.println();
         }
+    }
+
+
+    /**
+     * 获取二叉树的深度
+     */
+    private int getHeight(TreeNode root) {
+        if (root == null) return 0;
+        int leftHeight = 1 + getHeight(root.left);
+        int rightHeight = 1 + getHeight(root.right);
+
+        return Math.max(leftHeight, rightHeight);
     }
 
 
@@ -57,23 +101,23 @@ public class _common_二叉树的遍历 {
      * @param root
      * @return
      */
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> results = new ArrayList<>();
-        dfs(0, root, results);
-        return results;
-    }
-
-    public void dfs(int index, TreeNode root, List<List<Integer>> res) {
-        if (root != null) {
-            //说明这一层的list还未创建
-            if (res.size() <= index) {
-                res.add(new ArrayList<>());
-            }
-            res.get(index).add(root.val);
-            dfs(index + 1, root.left, res);
-            dfs(index + 1, root.right, res);
-        }
-    }
+//    public List<List<Integer>> levelOrder(TreeNode root) {
+//        List<List<Integer>> results = new ArrayList<>();
+//        dfs(0, root, results);
+//        return results;
+//    }
+//
+//    public void dfs(int index, TreeNode root, List<List<Integer>> res) {
+//        if (root != null) {
+//            //说明这一层的list还未创建
+//            if (res.size() <= index) {
+//                res.add(new ArrayList<>());
+//            }
+//            res.get(index).add(root.val);
+//            dfs(index + 1, root.left, res);
+//            dfs(index + 1, root.right, res);
+//        }
+//    }
 
 
     /**
@@ -82,34 +126,34 @@ public class _common_二叉树的遍历 {
      * @param root
      * @return
      */
-//    public List<List<Integer>> levelOrder(TreeNode root) {
-//        List<List<Integer>> results = new ArrayList<>();
-//        Queue<TreeNode> queue = new LinkedList<>();
-//        queue.add(root);
-//
-//        while (!queue.isEmpty()) {
-//            List<Integer> list = new ArrayList<>();
-//            //这个size代表了这一层有多少个节点，需要提前获取
-//            int size = queue.size();
-//            for (int i = 0; i < size; i++) {
-//                TreeNode node = queue.poll();
-//                if (node != null) {
-//                    list.add(node.val);
-//                    if (node.left != null) {
-//                        queue.add(node.left);
-//                    }
-//                    if (node.right != null) {
-//                        queue.add(node.right);
-//                    }
-//                }
-//            }
-//            if (!list.isEmpty()) {
-//                results.add(list);
-//            }
-//        }
-//
-//        return results;
-//    }
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> results = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            //这个size代表了这一层有多少个节点，需要提前获取
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node != null) {
+                    list.add(node.val);
+                    if (node.left != null) {
+                        queue.add(node.left);
+                    }
+                    if (node.right != null) {
+                        queue.add(node.right);
+                    }
+                }
+            }
+            if (!list.isEmpty()) {
+                results.add(list);
+            }
+        }
+
+        return results;
+    }
 
 
     /**
@@ -200,9 +244,6 @@ public class _common_二叉树的遍历 {
 
     /**
      * 后序遍历递归实现
-     *
-     * @param root
-     * @return
      */
 //    public List<Integer> postorderTraversal(TreeNode root) {
 //        postOrder(root);

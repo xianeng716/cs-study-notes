@@ -24,6 +24,8 @@ package 分治;
 //
 // Related Topics 堆 分治算法
 
+import java.util.Arrays;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 public class offer40最小的k个数 {
     /**
@@ -59,6 +61,21 @@ public class offer40最小的k个数 {
 
 
         return result;
+    }
+
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{3, 5, 6, 9, 1, 2, 7};
+        offer40最小的k个数 a = new offer40最小的k个数();
+        new offer40最小的k个数().sort(nums, 0, nums.length - 1);
+        System.out.println(Arrays.toString(nums));
+    }
+
+    private void sort(int[] nums, int begin, int end) {
+        if (end - begin < 2) return;
+        int middle = pivoteIndex(nums, begin, end);
+        sort(nums, begin, middle);
+        sort(nums, middle + 1, end);
     }
 
     public int pivoteIndex(int[] nums, int begin, int end) {
