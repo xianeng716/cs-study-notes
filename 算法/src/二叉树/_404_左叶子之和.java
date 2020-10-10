@@ -64,11 +64,12 @@ class _404_左叶子之和 {
         if (treeNode == null) {
             return;
         }
+
+
+        inOrderTree(treeNode.left);
         if (treeNode.left != null && treeNode.left.right == null && treeNode.left.left == null) {
             count += treeNode.left.val;
         }
-
-        inOrderTree(treeNode.left);
         inOrderTree(treeNode.right);
     }
 

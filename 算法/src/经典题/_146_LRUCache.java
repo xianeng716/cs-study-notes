@@ -37,7 +37,6 @@ public class _146_LRUCache {
     private Node head;
     private Node tail;
     int capacity;
-
     public _146_LRUCache(int capacity) {
         map = new HashMap<>(capacity);
         head = new Node();
@@ -46,7 +45,6 @@ public class _146_LRUCache {
         tail.prev = head;
         this.capacity = capacity;
     }
-
     public int get(int key) {
         Node node = map.get(key);
         if (node != null) {
@@ -54,10 +52,8 @@ public class _146_LRUCache {
             addHead(node);
             return node.value;
         }
-
         return -1;
     }
-
     private void addHead(Node node) {
         Node headNext = head.next;
         head.next = node;
@@ -65,12 +61,10 @@ public class _146_LRUCache {
         node.next = headNext;
         headNext.prev = node;
     }
-
     private void removeNode(Node node) {
         node.prev.next = node.next;
         node.next.prev = node.prev;
     }
-
     public void put(int key, int value) {
         Node node = map.get(key);
         if (node == null) {
@@ -85,10 +79,8 @@ public class _146_LRUCache {
             node.value = value;
             removeNode(node);
         }
-
         addHead(node);
     }
-
     static class Node {
         public int value;
         public int key;

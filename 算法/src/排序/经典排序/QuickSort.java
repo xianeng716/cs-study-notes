@@ -3,16 +3,13 @@ package 排序.经典排序;
 import java.util.Arrays;
 
 public class QuickSort {
-
     public static void main(String[] args) {
         int[] nums = new int[]{3, 1, 3, 11, -6, 9, 2, 10, 31, 15, -8};
         new QuickSort().sort(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }
-
     /**
      * 对 [begin, end] 范围的元素进行快速排序
-     *
      * @param begin
      * @param end
      */
@@ -24,10 +21,8 @@ public class QuickSort {
         sort(nums, begin, mid);
         sort(nums, mid + 1, end);
     }
-
     /**
      * 构造出 [begin, end) 范围的轴点元素
-     *
      * @return 轴点元素的最终位置
      */
     private int pivotIndex(int[] nums, int begin, int end) {
@@ -38,9 +33,6 @@ public class QuickSort {
         nums[begin] = temp;
         // 备份begin位置的元素
         int pivot = nums[begin];
-        // end指向最后一个元素
-//        end--;
-
         while (begin < end) {
             while (begin < end) {
                 if (pivot < nums[end]) { // 右边元素 > 轴点元素

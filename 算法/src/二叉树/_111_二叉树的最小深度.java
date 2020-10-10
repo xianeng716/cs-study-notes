@@ -21,13 +21,13 @@ package 二叉树;
 
 import 公共类.TreeNode;
 
-public class offer111_二叉树的最小深度 {
+public class _111_二叉树的最小深度 {
 
     public static void main(String[] args) {
         TreeNode a = new TreeNode(1);
         TreeNode b = new TreeNode(2);
         a.left = b;
-        System.out.println(new offer111_二叉树的最小深度().minDepth(a));
+        System.out.println(new _111_二叉树的最小深度().minDepth(a));
     }
 
     public int minDepth(TreeNode root) {
